@@ -1,18 +1,17 @@
 {
     "name": "processmaker/package-bug-report",
     "friendly_name": "Package Bug Report",
-    "description": "Package skeleton to develop a package for ProcessMaker 4",
+    "description": "Package to report bugs",
     "license": "AGPL-3.0-or-later",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "type": "project",
     "authors": [
         {
-            "name": "DevOps",
-            "email": "devops@processmaker.com"
+            "name": "carlos",
+            "email": "carlos.camacho@processmaker.com"
         }
     ],
-    "require": {
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
             "ProcessMaker\\Package\\PackageBugReport\\": "src",

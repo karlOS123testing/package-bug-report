@@ -24,18 +24,21 @@ class PackageBugReportController extends Controller
         if (!empty($filter)) {
             $filter = '%' . $filter . '%';
             $query->where(function ($query) use ($filter) {
-                $query->Where('name', 'like', $filter);
+                $query->Where('username', 'like', $filter);
             });
         }
 
-        $order_by = $request->has('order_by') ? $order_by = $request->get('order_by') : 'name';
-        $order_direction = $request->has('order_direction') ? $request->get('order_direction') : 'ASC';
+        // Only allow sorting by valid columns in the users table
+        $allowedColumns = ['id', 'username', 'status', 'created_at', 'updated_at'];
+        $order_by = $request->input('order_by', 'id');
+        if (!in_array($order_by, $allowedColumns)) {
+            $order_by = 'id';
+        }
+        $order_direction = $request->input('order_direction', 'ASC');
 
         $response =
-            $query->orderBy(
-                $request->input('order_by', $order_by),
-                $request->input('order_direction', $order_direction)
-            )->paginate($request->input('per_page', 10));
+            $query->orderBy($order_by, $order_direction)
+                ->paginate($request->input('per_page', 10));
 
         return new ApiCollection($response);
     }
@@ -52,7 +55,7 @@ class PackageBugReportController extends Controller
     public function update(Request $request, $license_generator)
     {
         Sample::where('id', $license_generator)->update([
-            'name' => $request->get('name'),
+            'username' => $request->get('username'),
             'status' => $request->get('status'),
         ]);
 

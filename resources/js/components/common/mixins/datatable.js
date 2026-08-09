@@ -89,7 +89,7 @@ export default {
       // Our loading flag
       loading: false,
       // What column to order by (default of name)
-      orderBy: 'name',
+      orderBy: 'id',
       // What direction to order by (default of ascending)
       orderDirection: 'asc',
       // Cancel token which should be stored from axios if you want to cancel the current in progress request

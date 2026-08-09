@@ -12,16 +12,16 @@ class AddToMenus
         // Add a menu option to the top to point to our page
 
         $menu = Menu::get('topnav');
-        $menu->add(__('Skeleton'), ['route' => 'package.skeleton.tab.index']);
+        $menu->add(__('Bug Report'), ['route' => 'package.bug-report.tab.index', 'icon' => 'fa-bug-fill',]);
 
         // Add a option in the admin menu to point to our page
-        $menu = Menu::get('sidebar_admin')->first();
+        // $menu = Menu::get('sidebar_admin')->first();
 
-        // Add our menu item to the top nav
-        $menu->add(__('Skeleton'), [
-            'route' => 'package.skeleton.index',
-            'icon' => 'fa-puzzle-piece',
-        ]);
+        // // Add our menu item to the top nav
+        // $menu->add(__('Skeleton'), [
+        //     'route' => 'package.skeleton.index',
+        //     'icon' => 'fa-puzzle-piece',
+        // ]);
 
         return $next($request);
     }

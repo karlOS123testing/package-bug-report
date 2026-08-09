@@ -39,15 +39,16 @@
             <h5 slot="modal-header" class="modal-title">@{{ action }} Sample</h5>
             <button slot="modal-header" type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             <div class="form-group">
-                {!!Form::label('name', __('Name'))!!}
-                {!!Form::text('name', null, ['class'=> 'form-control', 'v-model'=> 'sample.name', 'v-bind:class'
-                => '{\'form-control\':true, \'is-invalid\':addError.name}'])!!}
-                <div class="invalid-feedback" v-for="nameError in addError.name" v-text="nameError"></div>
+                <label for="username">{{ __('userName') }}</label>
+                <input type="text" name="username" id="username" class="form-control" v-model="sample.username" :class="{'is-invalid': addError.username}">
+                <div class="invalid-feedback" v-for="usernameError in addError.username" v-text="usernameError"></div>
             </div>
             <div class="form-group">
-                {!!Form::label('status', __('Status'))!!}
-                {!!Form::select('status', ["ENABLED" => "ENABLED", "DISABLED" => "DISABLED"], null, ['class'=> 'form-control', 'v-model'=> 'sample.status', 'v-bind:class'
-                => '{\'form-control\':true, \'is-invalid\':addError.status}'])!!}
+                <label for="status">{{ __('Status') }}</label>
+                <select name="status" id="status" class="form-control" v-model="sample.status" :class="{'is-invalid': addError.status}">
+                    <option value="ENABLED">ENABLED</option>
+                    <option value="DISABLED">DISABLED</option>
+                </select>
                 <div class="invalid-feedback" v-for="statusError in addError.status" v-text="statusError"></div>
             </div>
 

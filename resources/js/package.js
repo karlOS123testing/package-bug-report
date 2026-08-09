@@ -29,16 +29,16 @@ export default new window.Vue({
       }]);
     },
     edit(data) {
-      this.sample.name = data.name;
+      this.sample.username = data.username;
       this.sample.status = data.status;
       this.sample.id = data.id;
       this.action = 'Edit';
       this.$refs.modal.show();
     },
     validateForm() {
-      if (this.sample.name === '' || this.sample.name === null) {
+      if (this.sample.username === '' || this.sample.username === null) {
         this.submitted = false;
-        this.addError.name = ['The name field is required'];
+        this.addError.username = ['The username field is required'];
         return false;
       }
       return true;
@@ -47,16 +47,16 @@ export default new window.Vue({
       evt.preventDefault();
       this.submitted = true;
       if (this.validateForm()) {
-        this.addError.name = null;
+        this.addError.username = null;
         if (this.action === 'Add') {
           ProcessMaker.apiClient.post('admin/package-bug-report', {
-            name: this.sample.name,
+            username: this.sample.username,
             status: this.sample.status,
           })
             .then(() => {
               this.reload();
               ProcessMaker.alert('Sample successfully added ', 'success');
-              this.sample.name = '';
+              this.sample.username = '';
               this.sample.status = 'ENABLED';
             })
             .catch((error) => {
@@ -70,13 +70,13 @@ export default new window.Vue({
             });
         } else {
           ProcessMaker.apiClient.patch(`admin/package-bug-report/${this.sample.id}`, {
-            name: this.sample.name,
+            username: this.sample.username,
             status: this.sample.status,
           })
             .then(() => {
               this.reload();
               ProcessMaker.alert('Sample successfully updated ', 'success');
-              this.sample.name = '';
+              this.sample.username = '';
               this.sample.status = 'ENABLED';
             })
             .catch((error) => {
@@ -95,8 +95,9 @@ export default new window.Vue({
     clearForm() {
       this.action = 'Add';
       this.id = '';
-      this.addError.name = null;
-      this.sample.name = '';
+      this.addError.username = null;
+      this.sample.username = '';
+      this.sample.status = 'ENABLED';
     },
   },
 });

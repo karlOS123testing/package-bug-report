@@ -6,9 +6,9 @@ use ProcessMaker\Models\ProcessMakerModel;
 
 class Sample extends ProcessMakerModel
 {
-    protected $table = 'sample_skeleton';
+    protected $table = 'users';
 
     protected $fillable = [
-        'id', 'name', 'status',
+        'id', 'username', 'status',
     ];
 }

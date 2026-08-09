@@ -59,20 +59,20 @@ export default {
   props: ['filter'],
   data() {
     return {
-      orderBy: 'name',
+      orderBy: 'id',
       // Our listing of samples
       sortOrder: [
         {
-          field: 'name',
-          sortField: 'name',
+          field: 'id',
+          sortField: 'id',
           direction: 'asc',
         },
       ],
       fields: [
         {
-          title: 'Name',
-          name: 'name',
-          sortField: 'name',
+          title: 'username',
+          name: 'username',
+          sortField: 'username',
         },
         {
           title: 'Status',
@@ -112,11 +112,11 @@ export default {
         case 'remove-item':
           ProcessMaker.confirmModal(
             'Caution!',
-            `Are you sure to inactive the sample '${data.name}'?`,
+            `Are you sure to inactive the sample '${data.username}'?`,
             '',
             () => {
               ProcessMaker.apiClient.delete(`admin/package-bug-report/${data.id}`).then(() => {
-                ProcessMaker.alert(`Sample ${data.name} has been deleted`, 'warning');
+                ProcessMaker.alert(`Sample ${data.username} has been deleted`, 'warning');
                 this.$emit('reload');
               });
             },
@@ -129,7 +129,7 @@ export default {
     fetch() {
       this.loading = true;
       // change method sort by sample
-      this.orderBy = this.orderBy === 'name' ? 'name' : this.orderBy;
+      this.orderBy = 'id'; //this.orderBy === 'id' ? 'id' : this.orderBy;
       // Load from our api client
       ProcessMaker.apiClient
         .get(
